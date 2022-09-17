@@ -5,15 +5,13 @@
     <?php 
     include('header.php');
 
-    
-    $query = "SELECT * FROM user JOIN petition ON user.id_user = petition.id_user" or die("Error:" . mysqli_error($con));
-
+    $query = "SELECT * FROM petition WHERE id_user = $user_id" or die("Error:" . mysqli_error($con));
     $result = mysqli_query($con, $query);
  
 
     ?>
     <meta charset="utf-8">
-    <title>Admin</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -71,7 +69,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0"><?php echo $a_name; ?></h6>
-                        <span>#Admin</span>
+                        <span>#User</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -107,8 +105,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
                                     <th scope="col">วันที่ยื่นคำร้อง</th>
                                     <th scope="col">วันที่ดำเนินการเสร็จสิ้น</th>
                                     <th scope="col">สายพันธ์ุ</th>
@@ -121,7 +117,7 @@
                                 if($result->num_rows == 0){
                             ?>
                                     <tr align="center">
-                                    <td colspan="8">ไม่พบข้อมูล</td>
+                                    <td colspan="6">ไม่พบข้อมูล</td>
                                     </tr>   
                             <?php 
                                 }else{
@@ -129,8 +125,6 @@
                             <tbody>
                                 <tr>
                                     <th scope="row"><?php echo $num; $num++; ?></th>
-                                    <td><?php echo $row_am['name']; ?></td>
-                                    <td><?php echo $row_am['lastname']; ?></td>
                                     <td><?php echo $row_am['petition_date']; ?></td>
                                     <td><?php echo $row_am['succes_date']; ?></td>
                                     <td><?php echo $row_am['species']; ?></td>
