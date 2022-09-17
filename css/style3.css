@@ -1,0 +1,21 @@
+.form_success span {
+width: 80%;
+height: 35px;
+margin: 3px 10%;
+font-size: 1.1rem;
+color: green;
+}
+
+.form_error span {
+width: 80%;
+height: 35px;
+margin: 3px 10%;
+font-size: 1.1rem;
+color: #d83d5a;
+}
+
+#error_msg {
+color: red;
+text-align: center;
+margin: 10px auto;
+}
