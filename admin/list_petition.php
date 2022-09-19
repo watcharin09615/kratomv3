@@ -39,12 +39,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="approved('0') , status('0')">
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -77,13 +75,13 @@
                 <div class="navbar-nav w-100">
                     <a href="index.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>HOME</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>MANAGE USERS</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>MANAGE USERS</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="memberadmin.php" class="dropdown-item">ADMIN</a>
-                            <a href="memberuser.php" class="dropdown-item active">USER</a>
+                            <a href="memberuser.php" class="dropdown-item ">USER</a>
                         </div>
                     </div>
-                    <a href="list_petition.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>รายการคำขอ</a>
+                    <a href="list_petition.php" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>รายการคำขอ</a>
                     
                 </div>
             </nav>
@@ -102,6 +100,8 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">รายการคำร้อง</h2>
+                    <button type="button" class="btn btn-success bth-sm" data-bs-toggle="modal" data-bs-target="#add">เพิ่มรายการ</button>
+                    <br>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -125,8 +125,10 @@
                                     </tr>   
                             <?php 
                                 }else{
+
+                                    ?> <tbody><?php
                                     while ($row_am =  mysqli_fetch_assoc($result)){ ?>
-                            <tbody>
+                            
                                 <tr>
                                     <th scope="row"><?php echo $num; $num++; ?></th>
                                     <td><?php echo $row_am['name']; ?></td>
@@ -135,49 +137,69 @@
                                     <td><?php echo $row_am['succes_date']; ?></td>
                                     <td><?php echo $row_am['species']; ?></td>
                                     <?php if($row_am['status'] == 1){ ?>
-                                        <td> รอการตรวจสอบ </td>
+                                        <td class="text-warning"> รอการตรวจสอบ </td>
                                     <?php }elseif($row_am['status'] == 2){ ?>
-                                        <td> ส่งคำร้องไปยังกรมเกษตรแล้ว </td>
+                                        <td> กำลังดำเนินการ </td>
                                     <?php }elseif($row_am['status'] == 3){?>
-                                        <td> เสร็จสิ้น <?php if ($row_am['approved'] == 1) {
+                                        <td class="text-success"> เสร็จสิ้น <?php if ($row_am['approved'] == 1) {
                                             ?> (อนุมัติ)<?php
                                         }elseif ($row_am['approved'] == 0) {
                                             ?> (ไม่อนุมัติ) <?php
                                         } ?></td>
                                     <?php } ?>
                                     <td>
-                                        <a class="btn btn-primary" href="#modal" data-bs-toggle="modal" data-bs-target="#detail"> รายละเอียด</a>
-                                        <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="detailLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="detailLabel">Modal title <?php echo $row_am['species']; ?></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="recipient-name" class="control-label">Recipient:</label>
-                                                        <input type="text" class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detail<?php echo $row_am['id_petition'] ?>">
+                                        รายละเอียด
+                                        </button>
+                                        
                                         <?php 
                                             if ($row_am['status'] == 3 && $row_am['approved'] == 1) {
                                                 ?> 
-                                                <a href="img_gap.php?ID=<?php echo md5($row_am['id_petition']); ?>" class="btn btn-info btn-sm" > ดูใบรับรอง</a> 
+                                                <a class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#img<?php echo $row_am['id_petition'] ?>"> ดูใบรับรอง</a> 
+                                                <?php
+                                            }elseif ($row_am['status'] != 3) {
+                                                ?> 
+                                                <a class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#status<?php echo $row_am['id_petition'] ?>"> เปลี่ยนสถานะ</a> 
                                                 <?php
                                             }
                                         ?>
                                 
                                     </td>
-                                </tr>
+                                </tr> 
+                                
+                                <?php 
+                                // modal
+                                include('modal_detail.php');
+                                include('modal_gap.php');
+
+
+                                include('modal_upstatus.php');
+                            } ?>
                             </tbody>
-                            <?php }} ; ?>
+                            <?php }; ?>
                         </table>
+
+                        
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,10 +214,8 @@
     </div>
     
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
