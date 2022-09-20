@@ -158,6 +158,7 @@
                                 <?php 
                                 // modal
                                 include('modal_detail.php');
+                                include('modal_gap.php');
                                 } ?>
 
                                 
