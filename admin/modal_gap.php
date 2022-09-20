@@ -3,14 +3,14 @@
 
 <?php  
     $id = $row_am['id_petition'];
-    $gap = "SELECT * FROM petition,user,img WHERE MD5(petition.id_petition) = MD5($id) AND petition.id_user = user.id_user AND img.petition_id = MD5($id) " or die("Error:" . mysqli_error($con));
+    $gap = "SELECT * FROM petition,user,img WHERE petition.id_petition = $id AND petition.id_user = user.id_user AND img.petition_id = $id " or die("Error:" . mysqli_error($con));
     $result2 = mysqli_query($con, $gap);
     $modal_gap = mysqli_fetch_assoc($result2);
 ?>
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">คำร้องที่ <?php echo md5($row_modal['id_petition']); ?></h5>
+                <h5 class="modal-title" id="exampleModalLabel">ใบรับรอง</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body modal-dialog-scrollable">

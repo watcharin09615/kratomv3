@@ -33,7 +33,22 @@
                     <dt class="col-sm-4 text-truncate">เบอร์โทร</dt>
                     <dd class="col-sm-8"><?php echo $row_modal['tel']; ?></dd>
 
-                    <dt class="col-sm-4">สถานะการดำเนินการ</dt>
+                    <dt class="col-sm-4 text-truncate">วันที่ยื่นคำร้อง</dt>
+                    <dd class="col-sm-8"><?php echo $row_modal['petition_date']; ?></dd>
+
+                    <?php 
+                    if ($row_modal['status'] == 3) {
+                        ?>  
+                        <dt class="col-sm-4 text-truncate">วันที่ดำเนินการเสร็จสิ้น</dt>
+                        <dd class="col-sm-8"><?php echo $row_modal['succes_date']; ?></dd>
+                        
+                        <?php
+                    }
+                    ?>
+
+                   
+
+                    <dt class="col-sm-4 text-truncate">สถานะการดำเนินการ</dt>
                     <dd class="col-sm-8">
                     <?php
                         switch ($row_modal['status']) {

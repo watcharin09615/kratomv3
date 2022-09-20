@@ -1,4 +1,5 @@
 (function ($) {
+
     "use strict";
 
     // Spinner
@@ -58,149 +59,131 @@
         nav : false
     });
 
+    $('input[type=radio][name=status]').click(function (){
+        var petid = $(this).attr('petid');
+        var id = $(this).attr('id');
 
-    // Worldwide Sales Chart
-    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-    var myChart1 = new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(0, 156, 255, .7)"
-                },
-                {
-                    label: "UK",
-                    data: [8, 35, 40, 60, 70, 55, 75],
-                    backgroundColor: "rgba(0, 156, 255, .5)"
-                },
-                {
-                    label: "AU",
-                    data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(0, 156, 255, .3)"
-                }
-            ]
-            },
-        options: {
-            responsive: true
+        if( id == 'btnradio3_'+petid ) {
+            $("#dis1_"+ petid).show();
+            $("#dis2_"+ petid).show();
+        }
+        else {
+            $("#dis1_"+ petid).hide();
+            $("#dis2_"+ petid).hide();
+            $("#dis3_"+ petid).hide();
+            $("#dis4_"+ petid).hide();
         }
     });
 
+    $('input[type=radio][name=approved]').click(function (){
+        var petid = $(this).attr('petid');
+        var id = $(this).attr('id');
 
-    // Salse & Revenue Chart
-    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-    var myChart2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
-                    backgroundColor: "rgba(0, 156, 255, .5)",
-                    fill: true
-                },
-                {
-                    label: "Revenue",
-                    data: [99, 135, 170, 130, 190, 180, 270],
-                    backgroundColor: "rgba(0, 156, 255, .3)",
-                    fill: true
-                }
-            ]
-            },
-        options: {
-            responsive: true
+        console.log(id);
+
+        if( id == 'radio1_'+petid ) {
+            $("#dis3_"+ petid).show();
+            $("#dis4_"+ petid).show();
+        }
+        else {
+            $("#dis3_"+ petid).hide();
+            $("#dis4_"+ petid).hide();
         }
     });
+
+    // $('button[type=submit][for=updatestatus]').click();
+
+
+// var mysql = require('mysql');
+
+// var con = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "kratom"
+// });
+
+// con.connect(function(err) {
+//     if (err) throw err;
+//     con.query("SELECT id_petition FROM petition", function (err, result, fields) {
+//     if (err) throw err;
+//     console.log(result);
+
+//     $("#btnradio3text" + console.log(result)).click(function () {
+//         $("#dis1").show();
+//         $("#dis2").show();
+//         $("#dis3").hide();
+//         $("#dis4").hide();
+//         console.log('3')
+
+        
+//     });
+
+//     $('#btnradio1text'+ console.log(result)).click(function () {
+//         $("#dis1").hide();
+//         $("#dis2").hide();
+//         $("#dis3").hide();
+//         $("#dis4").hide();
+//         console.log('1')
+//     });
+
+//     $('#btnradio2text'+ console.log(result)).click(function () {
+//         $("#dis1").hide();
+//         $("#dis2").hide();
+//         $("#dis3").hide();
+//         $("#dis4").hide();
+//         console.log('2')
+//     });
+
+//     $('#radio1text'+ console.log(result)).click(function () {
+//         $("#dis3").show();
+//         $("#dis4").show();
+//     });
+
+//     $('#radio2text'+ console.log(result)).click(function () {
+//         $("#dis3").hide();
+//         $("#dis4").hide();
+//     });
     
 
+//     });
+// });
 
-    // Single Line Chart
-    var ctx3 = $("#line-chart").get(0).getContext("2d");
-    var myChart3 = new Chart(ctx3, {
-        type: "line",
-        data: {
-            labels: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
-            datasets: [{
-                label: "Salse",
-                fill: false,
-                backgroundColor: "rgba(0, 156, 255, .3)",
-                data: [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
+    // $('#btnradio3text').click(function () {
+    //     $("#dis1").show();
+    //     $("#dis2").show();
+    //     $("#dis3").hide();
+    //     $("#dis4").hide();
+    //     console.log('3')
 
+        
+    // });
 
-    // Single Bar Chart
-    var ctx4 = $("#bar-chart").get(0).getContext("2d");
-    var myChart4 = new Chart(ctx4, {
-        type: "bar",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
+    // $('#btnradio1text').click(function () {
+    //     $("#dis1").hide();
+    //     $("#dis2").hide();
+    //     $("#dis3").hide();
+    //     $("#dis4").hide();
+    //     console.log('1')
+    // });
 
+    // $('#btnradio2text').click(function () {
+    //     $("#dis1").hide();
+    //     $("#dis2").hide();
+    //     $("#dis3").hide();
+    //     $("#dis4").hide();
+    //     console.log('2')
+    // });
 
-    // Pie Chart
-    var ctx5 = $("#pie-chart").get(0).getContext("2d");
-    var myChart5 = new Chart(ctx5, {
-        type: "pie",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
+    // $('#radio1text').click(function () {
+    //     $("#dis3").show();
+    //     $("#dis4").show();
+    // });
 
-
-    // Doughnut Chart
-    var ctx6 = $("#doughnut-chart").get(0).getContext("2d");
-    var myChart6 = new Chart(ctx6, {
-        type: "doughnut",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
+    // $('#radio2text').click(function () {
+    //     $("#dis3").hide();
+    //     $("#dis4").hide();
+    // });
 
     
 })(jQuery);

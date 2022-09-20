@@ -42,7 +42,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body onload="approved('0') , status('0')">
+<body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -172,10 +172,12 @@
                                 // modal
                                 include('modal_detail.php');
                                 include('modal_gap.php');
+                                include('modal_updatestatus.php');
+                                } ?>
+
+                                
 
 
-                                include('modal_upstatus.php');
-                            } ?>
                             </tbody>
                             <?php }; ?>
                         </table>
@@ -208,6 +210,11 @@
         </div>
         <!-- Content End -->
 
+        <?php
+        
+        // include('modal_addpat.php');
+        ?>
+
         
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -223,9 +230,23 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
+                            
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#display').attr('src', e.target.result).width("width=100%");
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
+    </script>
 </body>
 
 </html>
+
