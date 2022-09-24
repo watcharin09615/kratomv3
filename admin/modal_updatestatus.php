@@ -2,11 +2,7 @@
 <div class="modal fade" id="status<?php echo $row_am['id_petition'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 <?php  
-    $id = $row_am['id_petition'];
-    $query = "SELECT * FROM user WHERE user_status = 1 and user_type = 1 ORDER BY id_user asc" or die("Error:" . mysqli_error($con));
-        //3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result .
-    $result = mysqli_query($con, $query);
-    //4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล:
+
 ?>
     <div class="modal-dialog modal-xl">
         <form action="update_status_db.php" method="post" enctype="multipart/form-data">
@@ -15,6 +11,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">คำร้องของคุณ <?php echo $row_modal['name']." ".$row_modal['lastname']; ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body modal-dialog-scrollable">
                     <br>
                     <div class="bg-light rounded h-100 p-4">
@@ -81,11 +78,13 @@
                     </div>
                     
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </form>
+        
         
     </div>
 </div>

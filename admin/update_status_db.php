@@ -68,7 +68,7 @@ $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_erro
 
 
   
-if($result && $result2){
+if($result){
       echo "<script type='text/javascript'>";
       echo "alert('Update Succesfuly');";
       echo "window.location = 'list_petition.php';";

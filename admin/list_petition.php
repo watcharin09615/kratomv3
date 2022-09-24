@@ -10,7 +10,6 @@
 
     $result = mysqli_query($con, $query);
  
-
     ?>
     <meta charset="utf-8">
     <title>Admin</title>
@@ -100,15 +99,15 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">รายการคำร้อง</h2>
-                    <button type="button" class="btn btn-success bth-sm" data-bs-toggle="modal" data-bs-target="#add">เพิ่มรายการ</button>
+                    <button type="button" class="btn btn-success bth-sm" data-bs-toggle="modal" data-bs-target="#addpet">เพิ่มรายการ</button>
                     <br>
                     <div class="table-responsive">
-                        <table class="table">
+                    <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
+                                    <th scope="col">ชื่อ</th>
+                                    <th scope="col">นามสกุล</th>
                                     <th scope="col">วันที่ยื่นคำร้อง</th>
                                     <th scope="col">วันที่ดำเนินการเสร็จสิ้น</th>
                                     <th scope="col">สายพันธ์ุ</th>
@@ -123,10 +122,9 @@
                                     <tr align="center">
                                     <td colspan="8">ไม่พบข้อมูล</td>
                                     </tr>   
-                            <?php 
-                                }else{
-
-                                    ?> <tbody><?php
+                            <?php } else{ ?> 
+                            <tbody>       
+                            <?php
                                     while ($row_am =  mysqli_fetch_assoc($result)){ ?>
                             
                                 <tr>
@@ -141,11 +139,18 @@
                                     <?php }elseif($row_am['status'] == 2){ ?>
                                         <td> กำลังดำเนินการ </td>
                                     <?php }elseif($row_am['status'] == 3){?>
-                                        <td class="text-success"> เสร็จสิ้น <?php if ($row_am['approved'] == 1) {
-                                            ?> (อนุมัติ)<?php
-                                        }elseif ($row_am['approved'] == 0) {
-                                            ?> (ไม่อนุมัติ) <?php
-                                        } ?></td>
+                                        <td class="text-success"> เสร็จสิ้น 
+                                            <?php if ($row_am['approved'] == 1) { ?>
+                                                
+                                                (อนุมัติ) 
+                                            <?php } elseif ($row_am['approved'] == 0) { ?>
+                                                <span class="text-danger">
+                                                (ไม่อนุมัติ) 
+
+                                                </span> 
+                                                
+                                            <?php } ?>
+                                        </td>
                                     <?php } ?>
                                     <td>
                                         <!-- Button trigger modal -->
@@ -164,7 +169,6 @@
                                                 <?php
                                             }
                                         ?>
-                                
                                     </td>
                                 </tr> 
                                 
@@ -174,48 +178,21 @@
                                 include('modal_gap.php');
                                 include('modal_updatestatus.php');
                                 } ?>
-
-                                
-
-
                             </tbody>
                             <?php }; ?>
                         </table>
-
                         
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
             </div>
 
         </div>
-        <!-- Content End -->
-
-        <?php
-        
-        // include('modal_addpat.php');
-        ?>
-
-        
+        <!-- Content End -->  
+        <?php 
+        include('modal_addpat.php')
+        ?>  
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>

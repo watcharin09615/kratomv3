@@ -95,7 +95,7 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">รายการคำร้อง</h2>
-                    <button type="button" class="btn btn-success bth-sm" data-bs-toggle="modal" data-bs-target="#add">เพิ่มรายการ</button>
+                    
                     <br>
                     <div class="table-responsive">
                         <table class="table">
@@ -214,19 +214,6 @@
                             
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-        function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-            $('#display').attr('src', e.target.result).width(800);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-        }
-    </script>
 </body>
 
 </html>

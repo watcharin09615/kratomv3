@@ -97,13 +97,14 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">สมาชิกผู้ดูแล</h2>
+                    <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#">เพิ่มสมาชิก</button>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
+                                    <th scope="col">ชื่อ </th>
+                                    <th scope="col">นามสกุล</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Enable/Disable</th>
