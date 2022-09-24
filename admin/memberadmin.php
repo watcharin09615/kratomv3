@@ -85,6 +85,8 @@
         </div>
         <!-- Sidebar End -->
 
+        
+
 
         <!-- Content Start -->
         <div class="content">
@@ -97,7 +99,7 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">สมาชิกผู้ดูแล</h2>
-                    <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#">เพิ่มสมาชิก</button>
+                    <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#addadmin">เพิ่มสมาชิก</button>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -144,6 +146,11 @@
 
         </div>
         <!-- Content End -->
+
+        <!-- modal -->
+        <?php
+            include('modal_add_admin.php');
+        ?>
 
 
         <!-- Back to Top -->

@@ -98,7 +98,7 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">สมาชิกผู้ใช้งานทั่วไป</h2>
-                    <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#">เพิ่มสมาชิก</button>
+                    <button type="button" class="btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#adduser">เพิ่มสมาชิก</button>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -145,7 +145,10 @@
 
         </div>
         <!-- Content End -->
-
+         <!-- modal -->
+         <?php
+            include('modal_add_user.php');
+        ?>
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
